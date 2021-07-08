@@ -107,9 +107,12 @@ const Products: React.FC = () => {
 	return (
 		<div>
 			<div className='quantity-cart-wrapper'>
-				<p>Cart</p>
+				<div className='shopping-cart-icon'>
+					<img src={Assets.shoppingCart} alt='shopping cart' />
+				</div>
 				<p>{total}</p>
 			</div>
+
 			<div>
 				{products.map(product => (
 					<Product {...product} onAddCart={handlerAddCart} key={product.id} />
