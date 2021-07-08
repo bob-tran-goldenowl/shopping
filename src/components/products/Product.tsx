@@ -11,16 +11,16 @@ const Product: React.FC<ProductProps> = ({
 	id,
 	icon,
 	price,
-	description,
+	productName,
 	onAddCart,
 }: ProductProps) => (
 	<div className='container' id={`product_${id}`}>
 		<div className='product'>
-			<img className='img' src={`${icon}`} alt='' />
+			<img className='img' src={`${icon}`} alt='product avatar' />
 		</div>
 		<span className='price'>{price}$</span>
 		<div>
-			<span>{description}</span>
+			<span>{productName}</span>
 		</div>
 		<button
 			type='button'

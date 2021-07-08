@@ -18,7 +18,7 @@ const Cart: React.FC<CartProps> = ({
 	<div>
 		<div className='container-card float' id={`cart_${id}`}>
 			<div className='item wrapper-img float-item'>
-				<img className='img' src={`${icon}`} alt='' />
+				<img className='img' src={`${icon}`} alt='cart avatar' />
 			</div>
 			<div className='item float-item product-b grid-container'>
 				<div className='grid-item'>Cart Name</div>
