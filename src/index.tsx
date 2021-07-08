@@ -12,7 +12,7 @@ import AppLoading from './components/loading/AppLoading'
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<PersistGate loading={AppLoading} persistor={persistor}>
+			<PersistGate loading={<AppLoading />} persistor={persistor}>
 				<App />
 			</PersistGate>
 		</Provider>
