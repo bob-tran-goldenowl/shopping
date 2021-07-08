@@ -5,6 +5,8 @@ import { createBrowserHistory } from 'history'
 
 const Products = lazy(() => import('./components/products/Products'))
 const Carts = lazy(() => import('./components/carts/Carts'))
+const BasicLayout = lazy(() => import('./layouts/BasicLayout'))
+
 export const history = createBrowserHistory()
 
 export interface RouteConfig {
@@ -13,6 +15,7 @@ export interface RouteConfig {
 	exact?: boolean
 	private?: boolean
 	routes?: Record<string, RouteConfig>
+	layout?: React.ComponentType<{ children?: React.ReactNode }>
 }
 
 export interface RouteProps
@@ -28,11 +31,13 @@ export const Routes = {
 		path: '/products',
 		exact: true,
 		component: Products,
+		layout: BasicLayout,
 	},
 	carts: {
 		path: '/carts',
 		exact: true,
 		component: Carts,
+		layout: BasicLayout,
 	},
 	default: {
 		path: '/',
@@ -43,15 +48,22 @@ export const Routes = {
 export function renderRouteConfigs(routes: Record<string, RouteConfig>) {
 	return (
 		<Switch>
-			{Object.values(routes).map((route, index) => (
-				<Route
-					// eslint-disable-next-line react/no-array-index-key
-					key={index}
-					path={route.path}
-					exact={route.exact}
-					render={props => <route.component routes={route.routes} {...props} />}
-				/>
-			))}
+			{Object.values(routes).map((route, index) => {
+				const Layout = route.layout || React.Fragment
+				return (
+					<Route
+						// eslint-disable-next-line react/no-array-index-key
+						key={index}
+						path={route.path}
+						exact={route.exact}
+						render={props => (
+							<Layout>
+								<route.component routes={route.routes} {...props} />
+							</Layout>
+						)}
+					/>
+				)
+			})}
 		</Switch>
 	)
 }

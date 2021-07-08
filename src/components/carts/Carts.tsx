@@ -1,17 +1,40 @@
-import React, { useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux'
-import { add, selectCarts } from './cartsSlice'
+import { removeCarts, selectCarts, totalCart } from './cartsSlice'
+import './Carts.css'
+import Cart from './Cart'
 
 export interface CartProps {}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Carts: React.FC<CartProps> = (props: CartProps) => {
-	const products = useAppSelector(selectCarts)
+	const carts = useAppSelector(selectCarts)
 	const dispatch = useAppDispatch()
-	useEffect(() => {
-		dispatch(add({ id: 1, amount: 0 }))
-	}, [])
-	return <div>{JSON.stringify(products)}</div>
+	const total = useAppSelector(totalCart)
+
+	const handlerRemoveCart = useCallback(
+		id => {
+			const cartInfo = carts.find(cart => cart.id === id)
+			if (cartInfo) {
+				dispatch(removeCarts([cartInfo]))
+			}
+		},
+		[carts]
+	)
+
+	return (
+		<div>
+			<div className='quantity-cart-wrapper'>
+				<p>Cart</p>
+				<p>{total}</p>
+			</div>
+			<div>
+				{carts.map(cart => (
+					<Cart {...cart} onRemoveCart={handlerRemoveCart} key={cart.id} />
+				))}
+			</div>
+		</div>
+	)
 }
 
 export default Carts

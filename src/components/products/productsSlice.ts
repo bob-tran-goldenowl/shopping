@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+import { IAssets } from '../../assets'
 import { RootState } from '../../store'
 
 export interface IProduct {
-	id: Number
-	icon?: String
-	price: Number
-	content?: String
+	id: number
+	icon?: keyof IAssets
+	price: number
+	productName: string
+	description?: string
 }
 
 export interface ProductsState {
@@ -29,19 +30,17 @@ const productsSlice = createSlice({
 		finishLoading: state => {
 			state.loading = false
 		},
-		add: (state, action: PayloadAction<IProduct>) => {
-			state.products.push(action.payload)
-		},
-		modify: (state, action: PayloadAction<IProduct[]>) => {
+		addProduct: (state, action: PayloadAction<IProduct[]>) => {
 			const products = [...state.products]
 			action.payload.forEach(product => {
-				let index = products.findIndex(item => item.id === product.id)
-				index = index !== -1 ? index : products.length
-				products[index] = product
+				const index = products.findIndex(item => item.id === product.id)
+				if (index <= -1) {
+					products.push(product)
+				}
 			})
 			state.products = products
 		},
-		remove: (state, action: PayloadAction<IProduct[]>) => {
+		removeProduct: (state, action: PayloadAction<IProduct[]>) => {
 			const products = [...state.products]
 			action.payload.forEach(product => {
 				const index = products.findIndex(item => item.id === product.id)
@@ -54,10 +53,13 @@ const productsSlice = createSlice({
 	},
 })
 
-export const { startLoading, finishLoading, add, modify, remove } =
+export const { startLoading, finishLoading, addProduct, removeProduct } =
 	productsSlice.actions
 
 export const productsReducer = productsSlice.reducer
 
 export const selectProducts = (state: RootState) =>
 	state.productsReducer.products
+
+export const selectProduct = (state: RootState, id: number) =>
+	state.productsReducer.products.find(item => item.id === id)

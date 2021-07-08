@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
+import { IProduct } from '../products/productsSlice'
 
-export interface ICart {
-	id: Number
-	amount: Number
+export interface ICart extends IProduct {
+	quantity: number
 }
 
 export interface CartsState {
@@ -26,19 +26,19 @@ const cartsSlice = createSlice({
 		finishLoading: state => {
 			state.loading = false
 		},
-		add: (state, action: PayloadAction<ICart>) => {
-			state.carts.push(action.payload)
-		},
-		modify: (state, action: PayloadAction<ICart[]>) => {
+		addCarts: (state, action: PayloadAction<IProduct[]>) => {
 			const carts = [...state.carts]
-			action.payload.forEach(cart => {
-				let index = carts.findIndex(item => item.id === cart.id)
-				index = index !== -1 ? index : carts.length
-				carts[index] = cart
+			action.payload.forEach(product => {
+				const index = carts.findIndex(item => item.id === product.id)
+				if (index > -1) {
+					carts[index] = { ...carts[index], quantity: carts[index].quantity + 1 }
+				} else {
+					carts.push({ ...product, quantity: 1 })
+				}
 			})
 			state.carts = carts
 		},
-		remove: (state, action: PayloadAction<ICart[]>) => {
+		removeCarts: (state, action: PayloadAction<ICart[]>) => {
 			const carts = [...state.carts]
 			action.payload.forEach(cart => {
 				const index = carts.findIndex(item => item.id === cart.id)
@@ -51,9 +51,17 @@ const cartsSlice = createSlice({
 	},
 })
 
-export const { startLoading, finishLoading, add, modify, remove } =
+export const { startLoading, finishLoading, addCarts, removeCarts } =
 	cartsSlice.actions
 
 export const cartsReducer = cartsSlice.reducer
 
 export const selectCarts = (state: RootState) => state.cartsReducer.carts
+
+export const totalCart = (state: RootState) => {
+	let total = 0
+	state.cartsReducer.carts.forEach(cart => {
+		total += cart.quantity
+	})
+	return total
+}
