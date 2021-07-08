@@ -9,6 +9,24 @@
 	border-radius: 0.25rem;
 	margin: 8px !important;
 }
+
+.quantity-cart-wrapper {
+	display: flex;
+	justify-content: center;
+	justify-items: center;
+}
+
+.quantity-cart-wrapper .shopping-cart-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.quantity-cart-wrapper p {
+	font-size: 1em;
+	margin: 8px;
+}
+
 .item {
 	background: transparent;
 	text-align: left;

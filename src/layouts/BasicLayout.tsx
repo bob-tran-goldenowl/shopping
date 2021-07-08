@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react'
+import Assets from '../assets'
 import { history, Routes } from '../Router'
 import './BasicLayout.css'
 
@@ -29,7 +30,7 @@ const BasicLayout: React.FC = ({ children }) => {
 				<div className='navNarrow'>
 					<div className='hamburger'>
 						<button type='button' onClick={() => burgerToggle(!open)}>
-							Open
+							<img src={Assets.square} alt='hamburger' className='hamburger-icon' />
 						</button>
 					</div>
 					<div className='narrowLinks' style={{ display: open ? 'block' : 'none' }}>

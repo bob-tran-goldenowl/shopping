@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useRedux'
 import { removeCarts, selectCarts, totalCart } from './cartsSlice'
 import './Carts.css'
 import Cart from './Cart'
+import Assets from '../../assets'
 
 export interface CartProps {}
 
@@ -25,7 +26,9 @@ const Carts: React.FC<CartProps> = (props: CartProps) => {
 	return (
 		<div>
 			<div className='quantity-cart-wrapper'>
-				<p>Cart</p>
+				<div className='shopping-cart-icon'>
+					<img src={Assets.shoppingCart} alt='shopping cart' />
+				</div>
 				<p>{total}</p>
 			</div>
 			<div>

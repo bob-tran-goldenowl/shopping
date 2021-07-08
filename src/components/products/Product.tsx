@@ -11,16 +11,19 @@ const Product: React.FC<ProductProps> = ({
 	id,
 	icon,
 	price,
-	productName,
+	description,
 	onAddCart,
 }: ProductProps) => (
 	<div className='container' id={`product_${id}`}>
-		<div className='product'>
-			<img className='img' src={`${icon}`} alt='product avatar' />
+		<div className='flex-between'>
+			<div className='product'>
+				<img className='img' src={`${icon}`} alt='product avatar' />
+			</div>
+			<span className='price'>{price}$</span>
 		</div>
-		<span className='price'>{price}$</span>
-		<div>
-			<span>{productName}</span>
+
+		<div className='description'>
+			<span>{description}</span>
 		</div>
 		<button
 			type='button'

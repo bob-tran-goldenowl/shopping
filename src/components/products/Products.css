@@ -1,4 +1,6 @@
 .container {
+	width: 200px;
+	height: 300px;
 	position: relative;
 	display: inline-block;
 	margin: 24px;
@@ -6,28 +8,37 @@
 	border: 1px solid rgba(0, 0, 0, 0.125);
 	border-radius: 0.25rem;
 	padding: 8px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 	/* //background-color: #e5e5e5; */
 }
+.description {
+	height: 45%;
+	font-size: 12px;
+	text-align: left;
+	overflow: hidden;
+	padding: 12px;
+	margin-bottom: 8px;
+}
+.container .flex-between {
+	display: flex;
+	justify-content: space-between;
+}
 .container .price {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	margin: 4px 4px 0 0;
 	font-size: 1em;
+	padding: 8px 0px 0px 0px;
 	font-weight: bold;
 }
 
 .container span {
 	max-width: 200px;
 	text-transform: uppercase;
-	font-family: 'Arial';
 	display: inline-block;
 	margin-bottom: 8px;
 }
 
 .product {
-	width: 200px;
-	height: 200px;
+	width: 80px;
+	height: 80px;
 	font-size: 10px;
 	font-family: 'Arial';
 	margin-bottom: 8px;
