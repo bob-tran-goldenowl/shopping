@@ -14,7 +14,7 @@ const dataTest: IProduct = {
 
 test('renders cart', () => {
 	render(<Product {...dataTest} />)
-	const description = screen.getByText(dataTest.productName as string)
+	const description = screen.getByText(dataTest.description as string)
 	const price = screen.getByText(`${dataTest.price}$`)
 	const addCartBtnTitle = screen.getByText('Add to cart')
 	expect(description).toBeInTheDocument()
