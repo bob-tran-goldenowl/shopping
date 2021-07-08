@@ -16,19 +16,19 @@ export interface IAssets {
 	[name: string]: string
 }
 const Assets: IAssets = {
-	Typescript,
-	Go,
-	Javascript,
-	Java,
-	C,
-	Angular,
-	Github,
-	Node,
-	React,
-	Slack,
-	Vue,
-	shoppingCart,
-	square,
+  Typescript,
+  Go,
+  Javascript,
+  Java,
+  C,
+  Angular,
+  Github,
+  Node,
+  React,
+  Slack,
+  Vue,
+  shoppingCart,
+  square,
 }
 
 export default Assets

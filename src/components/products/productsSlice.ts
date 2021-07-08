@@ -16,41 +16,41 @@ export interface ProductsState {
 }
 
 export const ProductsInitialState: ProductsState = {
-	products: [],
-	loading: false,
+  products: [],
+  loading: false,
 }
 
 const productsSlice = createSlice({
-	name: 'products',
-	initialState: ProductsInitialState,
-	reducers: {
-		startLoading: state => {
-			state.loading = true
-		},
-		finishLoading: state => {
-			state.loading = false
-		},
-		addProduct: (state, action: PayloadAction<IProduct[]>) => {
-			const products = [...state.products]
-			action.payload.forEach(product => {
-				const index = products.findIndex(item => item.id === product.id)
-				if (index <= -1) {
-					products.push(product)
-				}
-			})
-			state.products = products
-		},
-		removeProduct: (state, action: PayloadAction<IProduct[]>) => {
-			const products = [...state.products]
-			action.payload.forEach(product => {
-				const index = products.findIndex(item => item.id === product.id)
-				if (index > -1) {
-					products.splice(index, 1)
-				}
-			})
-			state.products = products
-		},
-	},
+  name: 'products',
+  initialState: ProductsInitialState,
+  reducers: {
+    startLoading: state => {
+      state.loading = true
+    },
+    finishLoading: state => {
+      state.loading = false
+    },
+    addProduct: (state, action: PayloadAction<IProduct[]>) => {
+      const products = [...state.products]
+      action.payload.forEach(product => {
+        const index = products.findIndex(item => item.id === product.id)
+        if (index <= -1) {
+          products.push(product)
+        }
+      })
+      state.products = products
+    },
+    removeProduct: (state, action: PayloadAction<IProduct[]>) => {
+      const products = [...state.products]
+      action.payload.forEach(product => {
+        const index = products.findIndex(item => item.id === product.id)
+        if (index > -1) {
+          products.splice(index, 1)
+        }
+      })
+      state.products = products
+    },
+  },
 })
 
 export const { startLoading, finishLoading, addProduct, removeProduct } =
@@ -59,7 +59,7 @@ export const { startLoading, finishLoading, addProduct, removeProduct } =
 export const productsReducer = productsSlice.reducer
 
 export const selectProducts = (state: RootState) =>
-	state.productsReducer.products
+  state.productsReducer.products
 
 export const selectProduct = (state: RootState, id: number) =>
-	state.productsReducer.products.find(item => item.id === id)
+  state.productsReducer.products.find(item => item.id === id)

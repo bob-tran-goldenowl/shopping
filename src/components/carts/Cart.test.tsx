@@ -5,33 +5,33 @@ import Cart from './Cart'
 import { ICart } from './cartsSlice'
 
 const dataTest: ICart = {
-	id: 1,
-	price: 99,
-	productName: 'tets',
-	quantity: 2,
-	description: ' test cart',
-	icon: 'dsada',
+  id: 1,
+  price: 99,
+  productName: 'tets',
+  quantity: 2,
+  description: ' test cart',
+  icon: 'dsada',
 }
 
 test('renders cart', () => {
-	render(<Cart {...dataTest} />)
-	const cartNameTitle = screen.getByText('Cart Name')
-	const descriptionTitle = screen.getByText('Short Description')
-	const quantityTitle = screen.getByText('Qty')
-	const priceTitle = screen.getByText('Price per 1pc')
-	const totalTitle = screen.getByText('Line total')
-	const removeBtnTitle = screen.getByText('Remove item')
-	expect(cartNameTitle).toBeInTheDocument()
-	expect(descriptionTitle).toBeInTheDocument()
-	expect(quantityTitle).toBeInTheDocument()
-	expect(priceTitle).toBeInTheDocument()
-	expect(totalTitle).toBeInTheDocument()
-	expect(removeBtnTitle).toBeInTheDocument()
+  render(<Cart {...dataTest} />)
+  const cartNameTitle = screen.getByText('Cart Name')
+  const descriptionTitle = screen.getByText('Short Description')
+  const quantityTitle = screen.getByText('Qty')
+  const priceTitle = screen.getByText('Price per 1pc')
+  const totalTitle = screen.getByText('Line total')
+  const removeBtnTitle = screen.getByText('Remove item')
+  expect(cartNameTitle).toBeInTheDocument()
+  expect(descriptionTitle).toBeInTheDocument()
+  expect(quantityTitle).toBeInTheDocument()
+  expect(priceTitle).toBeInTheDocument()
+  expect(totalTitle).toBeInTheDocument()
+  expect(removeBtnTitle).toBeInTheDocument()
 })
 
 test('Cart image', () => {
-	render(<Cart {...dataTest} />)
-	const cartImg = screen.getByRole('img')
-	expect(cartImg).toHaveAttribute('src', dataTest.icon)
-	expect(cartImg).toHaveAttribute('alt', 'cart avatar')
+  render(<Cart {...dataTest} />)
+  const cartImg = screen.getByRole('img')
+  expect(cartImg).toHaveAttribute('src', dataTest.icon)
+  expect(cartImg).toHaveAttribute('alt', 'cart avatar')
 })

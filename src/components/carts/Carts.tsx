@@ -9,35 +9,35 @@ export interface CartProps {}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Carts: React.FC<CartProps> = (props: CartProps) => {
-	const carts = useAppSelector(selectCarts)
-	const dispatch = useAppDispatch()
-	const total = useAppSelector(totalCart)
+  const carts = useAppSelector(selectCarts)
+  const dispatch = useAppDispatch()
+  const total = useAppSelector(totalCart)
 
-	const handlerRemoveCart = useCallback(
-		id => {
-			const cartInfo = carts.find(cart => cart.id === id)
-			if (cartInfo) {
-				dispatch(removeCarts([cartInfo]))
-			}
-		},
-		[carts]
-	)
+  const handlerRemoveCart = useCallback(
+    id => {
+      const cartInfo = carts.find(cart => cart.id === id)
+      if (cartInfo) {
+        dispatch(removeCarts([cartInfo]))
+      }
+    },
+    [carts]
+  )
 
-	return (
-		<div>
-			<div className='quantity-cart-wrapper'>
-				<div className='shopping-cart-icon'>
-					<img src={Assets.shoppingCart} alt='shopping cart' />
-				</div>
-				<p>{total}</p>
-			</div>
-			<div>
-				{carts.map(cart => (
-					<Cart {...cart} onRemoveCart={handlerRemoveCart} key={cart.id} />
-				))}
-			</div>
-		</div>
-	)
+  return (
+    <div>
+      <div className='quantity-cart-wrapper'>
+        <div className='shopping-cart-icon'>
+          <img src={Assets.shoppingCart} alt='shopping cart' />
+        </div>
+        <p>{total}</p>
+      </div>
+      <div>
+        {carts.map(cart => (
+          <Cart {...cart} onRemoveCart={handlerRemoveCart} key={cart.id} />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default Carts
