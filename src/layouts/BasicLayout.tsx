@@ -38,9 +38,11 @@ const BasicLayout: React.FC = ({ children }) => {
 								Products
 							</button>
 						</div>
-						<button type='button' onClick={() => redirect(Routes.carts.path)}>
-							Carts
-						</button>
+						<div>
+							<button type='button' onClick={() => redirect(Routes.carts.path)}>
+								Carts
+							</button>
+						</div>
 					</div>
 				</div>
 			</nav>
