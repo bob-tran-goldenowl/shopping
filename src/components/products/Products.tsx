@@ -5,6 +5,7 @@ import Product from './Product'
 import './Products.css'
 import { addCarts, totalCart } from '../carts/cartsSlice'
 import Assets from '../../assets'
+import { history, Routes } from '../../Router'
 
 const productContanst: IProduct[] = [
   {
@@ -107,10 +108,10 @@ const Products: React.FC = () => {
   return (
     <div>
       <div className='quantity-cart-wrapper'>
-        <div className='shopping-cart-icon'>
-          <img src={Assets.shoppingCart} alt='shopping cart' />
-        </div>
-        <p>{total}</p>
+        <button type='button' className="shopping-cart-btn" onClick={() => history.push(Routes.carts.path)}>
+          <img src={Assets.shoppingCart} alt='shopping cart'/>
+          <p>{total}</p>
+        </button>
       </div>
 
       <div>

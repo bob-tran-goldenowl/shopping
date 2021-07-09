@@ -3,7 +3,7 @@ import { IProduct } from './productsSlice'
 import './Products.css'
 
 export interface ProductProps extends IProduct {
-	onAddCart?: (id: Number) => void
+  onAddCart?: (id: Number) => void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -23,12 +23,14 @@ const Product: React.FC<ProductProps> = ({
     </div>
 
     <div className='description'>
-      <span>{description}</span>
+      {description}
     </div>
-    <button type='button' className='add-to-cart'	onClick={() => onAddCart && onAddCart(id)}
-    >
-			Add to cart
-    </button>
+    <div className="add-to-cart-wrapper">
+      <button type='button' className='add-to-cart'	onClick={() => onAddCart && onAddCart(id)}>
+      Add to cart
+      </button>
+    </div>
+    
   </div>
 )
 

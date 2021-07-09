@@ -27,7 +27,7 @@ const Cart: React.FC<CartProps> = ({
       </div>
       <div className='item float-item short grid-container'>
         <div className='grid-item'>Short Description</div>
-        <div className='grid-item'>{description}</div>
+        <div className='grid-item description-cart'>{description}</div>
       </div>
       <div className='item float-item qty grid-container'>
         <div className='grid-item'>Qty</div>

@@ -4,6 +4,7 @@ import { removeCarts, selectCarts, totalCart } from './cartsSlice'
 import './Carts.css'
 import Cart from './Cart'
 import Assets from '../../assets'
+import { history, Routes } from '../../Router'
 
 export interface CartProps {}
 
@@ -26,10 +27,10 @@ const Carts: React.FC<CartProps> = (props: CartProps) => {
   return (
     <div>
       <div className='quantity-cart-wrapper'>
-        <div className='shopping-cart-icon'>
+        <button type='button' className="shopping-cart-btn" onClick={() => history.push(Routes.products.path)}>
           <img src={Assets.shoppingCart} alt='shopping cart' />
-        </div>
-        <p>{total}</p>
+          <p>{total}</p>
+        </button>
       </div>
       <div>
         {carts.map(cart => (
